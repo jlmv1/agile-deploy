@@ -1,0 +1,20 @@
+---
+- name: Remove IP provisório
+  lineinfile:
+    path: "{{ provisioning_path }}guest{{ hostvars[groups['new_vms'][my_idx]]['vm_id'] }}/Vagrantfile"
+    regexp: ":ip =>"
+    line: "      :auto_config => false"
+    backrefs: yes
+  loop: "{{ groups['new_vms'] }}"
+  loop_control:
+    index_var: my_idx  
+  when: host_id == hostvars[groups['new_vms'][my_idx]]['vm_host_id']
+  
+- name: Reboot das VMs para aplicação das configurações de rede e interface
+  shell: vagrant reload
+  args:
+    chdir: "{{ provisioning_path }}guest{{ hostvars[groups['new_vms'][my_idx]]['vm_id'] }}/"
+  loop: "{{ groups['new_vms'] }}"
+  loop_control:
+    index_var: my_idx  
+  when: host_id == hostvars[groups['new_vms'][my_idx]]['vm_host_id']
