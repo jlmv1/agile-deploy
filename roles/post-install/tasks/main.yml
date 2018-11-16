@@ -52,10 +52,12 @@
     dest: /root/.ssh/authorized_keys
     force: no
 
-- name: Autorizando chave para acesso ssh como root
+- name: Autorizando chaves para acesso ssh como root
   lineinfile:
     path: /root/.ssh/authorized_keys
-    line: "{{ ansible_prov_pub_key }}"
+    line: "{{ item }}"
+  with_items:
+    - {{ ansible_prov_pub_key }}
 
 - name: Adicionando Forwarding IPv6
   copy:
