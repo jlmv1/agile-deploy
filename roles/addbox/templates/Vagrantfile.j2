@@ -2,21 +2,21 @@ Vagrant.configure("2") do |config|
 
   config.vm.box = "centos/7"
 
-  config.vm.define :{{ shortname }} do |config_{{ shortname }}|
-    config_{{ shortname }}.vm.hostname = "{{ hostname }}"
-    config_{{ shortname }}.vm.network :public_network,
+  config.vm.define :node{{ host_id|quote }}guest{{ hostvars[groups['new_vms'][my_idx]]['vm_id']|quote }} do |config_node{{ host_id|quote }}guest{{ hostvars[groups['new_vms'][my_idx]]['vm_id']|quote }}|
+    config_node{{ host_id|quote }}guest{{ hostvars[groups['new_vms'][my_idx]]['vm_id']|quote }}.vm.hostname = "node{{ host_id|quote }}guest{{ hostvars[groups['new_vms'][my_idx]]['vm_id']|quote }}.tcc.local"
+    config_node{{ host_id|quote }}guest{{ hostvars[groups['new_vms'][my_idx]]['vm_id']|quote }}.vm.network :public_network,
       :dev => "{{ mgmt_bridge_iface }}",
       :type => "bridge",
       :libvirt__iface_name => "{{ mgmt_iface_name }}",
       :mac => "{{ hostvars[groups['new_vms'][my_idx]]['mgmt_mac'] }}",
       :ip => "{{ hostvars[groups['new_vms'][my_idx]]['ansible_host'] }}"
-    config_{{ shortname }}.vm.network :public_network,
+    config_node{{ host_id|quote }}guest{{ hostvars[groups['new_vms'][my_idx]]['vm_id']|quote }}.vm.network :public_network,
       :dev => "{{ wan_bridge_iface }}",
       :type => "bridge",
       :libvirt__iface_name => "{{ wan_iface_name }}",
       :mac => "{{ hostvars[groups['new_vms'][my_idx]]['wan_mac'] }}",
       :auto_config => false
-    config_{{ shortname }}.vm.network :public_network,
+    config_node{{ host_id|quote }}guest{{ hostvars[groups['new_vms'][my_idx]]['vm_id']|quote }}.vm.network :public_network,
       :dev => "{{ lan_bridge_iface }}",
       :type => "bridge",
       :libvirt__iface_name => "{{ lan_iface_name }}",
