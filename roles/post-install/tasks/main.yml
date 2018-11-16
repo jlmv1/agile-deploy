@@ -57,7 +57,7 @@
     path: /root/.ssh/authorized_keys
     line: "{{ item }}"
   with_items:
-    - {{ ansible_prov_pub_key }}
+    - "{{ ansible_prov_pub_key }}"
 
 - name: Adicionando Forwarding IPv6
   copy:
