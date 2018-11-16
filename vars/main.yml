@@ -6,8 +6,9 @@ vm_playbook_absolute_path: "{{ provisioning_path }}playbooks/2-guest/2-vagrant-p
 vm_playbook_extra_vars_path: "{{ provisioning_path }}vars/"
 ## Chave SSH pública do usuário que está executando o Playbook
 ansible_prov_pub_key: "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAABAQDzAs26oQkhj98hb79Ukv22cl6J356aClf3aPC5Vy4pZag6mF/g4vq/VyjX2ctZS+adkrAvAM66YhFE4tjn9bJ1jp5K12O2saOuciXdVnjcNB4YBRmTUBjh7zzHQ3DfRj5I3Rhmf9eOg8Rnhjrf00WnUBAw9JjQPYhwZ+ssqRCSmkZf3yQReBLkxqGeUvF7oxvkW//HbBbsG6qrMOSkPDhFjEzugehDBLLH+3E1fv6n6+/a39udrqi6Bk6v/j08mIddX59Rk6thK6W3yW/xG9v6m/nT1dj3zsu5cuaD+JD607zvS6fTrqVftM7pR7cAi5NMA0FIe2v5Z4j4CRe51Bc5 root@ansible-tower"
-vm_memory: 1024
 vm_cpus: 1
+vm_memory: 1024
+vm_memory_master: 2048
 
 ## Interfaces que serão criadas na VM
 wan_iface_name: wan0

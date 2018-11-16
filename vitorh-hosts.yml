@@ -4,12 +4,6 @@ all:
       # Hosts em produção
     active_vms:
       # VMs em produção
-    active_master:
-    # Deixar sempre o Master Ativo do Cluster com IP e mode = master-active. Utilizado para ingressar workers ao Cluster
-      hosts:
-        node1guest1.tcc.local:
-          ansible_host: 192.168.0.210
-          mode: "master-active"
     new_hosts:
       # Novas máquinas físicas a serem provisionadas no ambiente.
       hosts:
