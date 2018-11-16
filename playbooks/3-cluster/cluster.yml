@@ -1,6 +1,6 @@
 ---
 - name: Deploy do cluster
-  hosts: new_vms:active_master
+  hosts: new_vms
 
   roles:
     - ../../roles/kubernetes/deploy_cluster
