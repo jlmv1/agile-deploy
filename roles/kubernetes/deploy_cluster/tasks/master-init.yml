@@ -8,7 +8,7 @@
      - /kubernetes/networks/files
 
 - name: Iniciar Cluster Kubernetes
-  shell: kubeadm init --apiserver-advertise-address {{ kube_master_ip }} --pod-network-cidr=10.66.0.0/16
+  shell: kubeadm init --apiserver-advertise-address {{ kube_master_ip }} --pod-network-cidr=10.244.0.0/16
 
 - name: Criar diretório do Kubernetes
   file:
