@@ -105,3 +105,6 @@
   copy:
     src: "../../../../files/ipsec/"
     dest: "/kubernetes/ipsec/"
+
+- name: Ajustando Políticas do IPTABLES
+  shell: iptables --policy FORWARD ACCEPT

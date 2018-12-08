@@ -1,0 +1,54 @@
+---
+- name: Criando conta no Kubernetes
+  shell: kubectl create serviceaccount k8sadmin -n kube-system
+  when: mode == "master-init"
+
+- name: Criando Roles de Permissionamento
+  shell: "{{ item }}"
+  with_items:
+     - kubectl create clusterrolebinding k8sadmin --clusterrole=cluster-admin --serviceaccount=kube-system:k8sadmin
+     - kubectl create clusterrolebinding --user system:serviceaccount:default:default default-sa-admin --clusterrole cluster-admin
+  when: mode == "master-init"
+
+- name: Criando DashBoard - WebUI
+  shell: kubectl create -f https://raw.githubusercontent.com/kubernetes/dashboard/master/src/deploy/recommended/kubernetes-dashboard.yaml
+  when: mode == "master-init"
+
+- name: Salvando configurações do serviço
+  shell: kubectl -n kube-system get service kubernetes-dashboard -o yaml > /tmp/kube-dashboard.yaml
+  when: mode == "master-init"
+
+- name: Ajustando tipo do Serviço Dashboard
+  lineinfile:
+    path: /tmp/kube-dashboard.yaml
+    regexp: 'type:'
+    line: '  type: NodePort'
+  when: mode == "master-init"
+
+- name: Aplicando configurações
+  shell: kubectl apply -f /tmp/kube-dashboard.yaml
+  when: mode == "master-init"
+
+- name: Salvando configurações do serviço
+  shell: kubectl -n kube-system get service kubernetes-dashboard -o yaml > /tmp/kube-dashboard.yaml
+  when: mode == "master-init"
+
+- name: Ajustando porta do Serviço Dashboard
+  lineinfile:
+    path: /tmp/kube-dashboard.yaml
+    regexp: 'nodePort:'
+    line: '  - nodePort: 32222'
+  when: mode == "master-init"
+
+- name: Aplicando configurações
+  shell: kubectl apply -f /tmp/kube-dashboard.yaml
+  when: mode == "master-init"
+
+- name: Salvando Token
+  shell: kubectl describe secrets | grep -i token | tail -n 1 | awk '{print $NF'}
+  register: token_web_login
+  when: mode == "master-init"
+
+- name: Exibindo Token para Login
+  debug: Token="{{ token_web_login.stdout }}"
+  when: mode == "master-init"

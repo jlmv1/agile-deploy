@@ -4,6 +4,7 @@
 
   roles:
     - ../../roles/kubernetes/deploy_cluster
+    - ../../roles/kubernetes/webui
     
   vars_files:
     - ../../vars/main.yml
