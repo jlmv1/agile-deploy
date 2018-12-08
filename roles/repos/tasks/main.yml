@@ -39,3 +39,8 @@
   copy:
     src: ../files/kubernetes.repo
     dest: /etc/yum.repos.d/kubernetes.repo
+
+- name: Configurando repositório epel-testing
+  copy:
+    src: ../files/epel-testing.repo
+    dest: /etc/yum.repos.d/epel-testing.repo
