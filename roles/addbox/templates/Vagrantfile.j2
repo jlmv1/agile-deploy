@@ -35,7 +35,13 @@ Vagrant.configure("2") do |config|
 {% else %}
 {{ vm_memory }}
 {% endif %}
-    domain.cpus = {{ vm_cpus }}
+    domain.cpus = {% if hostvars[groups['new_vms'][my_idx]]['mode'] == "master-init" %}
+{{ vm_cpus_master }}
+{% elif hostvars[groups['new_vms'][my_idx]]['mode'] == "master" %}
+{{ vm_cpus_master }}
+{% else %}
+{{ vm_cpus }}
+{% endif %}
     domain.autostart = true
   end
 end

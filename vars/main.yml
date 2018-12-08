@@ -13,6 +13,7 @@ ansible_prov_pub_key:
 vm_cpus: 1
 vm_memory: 1024
 vm_memory_master: 2048
+vm_cpus_master: 2
 
 ## Interfaces que serão criadas na VM
 wan_iface_name: wan0
