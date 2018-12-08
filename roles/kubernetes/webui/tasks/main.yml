@@ -50,5 +50,5 @@
   when: mode == "master-init"
 
 - name: Exibindo Token para Login
-  debug: Token="{{ token_web_login.stdout }}"
+  debug: msg="{{ token_web_login.stdout }}"
   when: mode == "master-init"
