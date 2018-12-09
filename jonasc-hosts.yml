@@ -37,10 +37,10 @@ all:
           wan_v4_prefix: "24"
           wan_hwaddr: "52:54:00:AA:00:00"
           ipv6_enable: true
-          wan_v6: "2804:7f5:9484:9335:faca::1"
+          wan_v6: "2804:7f5:9485:1ca4:faca::1"
           wan_v6_prefix: "64"
           default_gw4: "192.168.15.1"
-          default_gw6: "2804:7f5:9484:9335:3657:60ff:fe32:56c8"
+          default_gw6: "2804:7f5:9485:1ca4:3657:60ff:fe32:56c8"
         node1guest2.tcc.local:
           ansible_host: 172.16.255.201
           mgmt_mac: "525400AA0102"
@@ -59,9 +59,9 @@ all:
           wan_v4_prefix: "24"
           wan_hwaddr: "52:54:00:AA:01:00"
           ipv6_enable: true
-          wan_v6: "2804:7f5:9484:9335:faca::2"
+          wan_v6: "2804:7f5:9485:1ca4:faca::2"
           wan_v6_prefix: "64"
           default_gw4: "192.168.15.1"
-          default_gw6: "2804:7f5:9484:9335:3657:60ff:fe32:56c8"
+          default_gw6: "2804:7f5:9485:1ca4:3657:60ff:fe32:56c8"
     teste-tmp:
     # Grupo para testes.
